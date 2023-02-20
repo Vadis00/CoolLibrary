@@ -6,6 +6,8 @@ namespace CoolLibrary.Common.Entities
     {
         public string Message { get; set; } = null!;
         public string Reviewer { get; set; } = null!;
+
+        public int BookId { get; set; }
         public Book Book { get; set; } = null!;
     }
 }

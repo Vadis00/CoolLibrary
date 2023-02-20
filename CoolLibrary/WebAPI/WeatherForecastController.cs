@@ -1,4 +1,6 @@
+using CoolLibrary.DAL;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoolLibrary.Controllers
 {
@@ -12,15 +14,25 @@ namespace CoolLibrary.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly DataContext _dataContext;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, DataContext dataContext)
         {
             _logger = logger;
+            _dataContext = dataContext;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> Get()
         {
+            var book = await _dataContext.Books.FirstOrDefaultAsync(b => b.Author == "Nick Bostrom"); 
+            var rating = await _dataContext.Ratings.Where(b => b.BookId == book.Id).ToListAsync();
+
+            if(book != null) {
+                book.Author = "fdfd";
+ 
+            }
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
