@@ -8,6 +8,7 @@ namespace CoolLibrary.DAL.SeedData
         {
             await AddBooks(dataContext);
         }
+
         private static async Task AddBooks(DataContext _dataContext)
         {
             var bookList = new List<Book>()
@@ -38,59 +39,33 @@ namespace CoolLibrary.DAL.SeedData
                             Score =7
                         }
                     },
-                    Reviews =
+                },
+                new Book()
+                {
+                    Title = "Code: The Hidden Language of Computer Hardware and Software",
+                    Cover = "Cover",
+                    Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    Author = "Charles Petzold",
+                    Genre = "Information Technology",
+                    Ratings =
                     {
-                        new Review()
+                        new Rating()
                         {
-                            Message="Overall, my reaction to this book is mixed",
-                            Reviewer="Robert Brown"
+                            Score =5
                         },
-                        new Review()
+                        new Rating()
                         {
-                            Message="This book provides a balanced look at the Matrix trilogy.",
-                            Reviewer="Susan Clark"
+                            Score =5
                         },
-                        new Review()
+                        new Rating()
                         {
-                            Message="I have read almost all the Matrix books & seen all the movies.",
-                            Reviewer="Kenneth Walker"
+                            Score =5
                         },
-                        new Review()
+                        new Rating()
                         {
-                            Message="It was a very easy and fast read.",
-                            Reviewer="Patricia Garcia"
-                        },
-                        new Review()
-                        {
-                            Message="Very informative book and helped me gain financial literacy.",
-                            Reviewer="Michael Taylor"
-                        },
-                        new Review()
-                        {
-                            Message="This a life changing book",
-                            Reviewer="Susan Martin"
-                        },
-                        new Review()
-                        {
-                            Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
-                            Reviewer="Richard White"
-                        },
-                        new Review()
-                        {
-                            Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
-                            Reviewer="Mark Miller"
-                        },
-                        new Review()
-                        {
-                            Message="I truly love this books one of my favorites of all time.",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="I was so sad to get my book and no dust jacket and the less than what was described. The poor qualit",
-                            Reviewer="Mary Jones"
-                        },
-                    }
+                            Score =5
+                        }
+                    },
                 },
                 new Book()
                 {
@@ -99,25 +74,6 @@ namespace CoolLibrary.DAL.SeedData
                     Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                     Author = "Ashlee Vance",
                     Genre = "Information Technology",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =9
-                        },
-                        new Rating()
-                        {
-                            Score =3
-                        },
-                        new Rating()
-                        {
-                            Score =6
-                        },
-                        new Rating()
-                        {
-                            Score =5
-                        }
-                    },
                     Reviews =
                     {
                         new Review()
@@ -133,7 +89,7 @@ namespace CoolLibrary.DAL.SeedData
                         new Review()
                         {
                             Message="I have read almost all the Matrix books & seen all the movies.",
-                            Reviewer="Kenneth Walker"
+                            Reviewer="Information Technology"
                         },
                         new Review()
                         {
@@ -149,11 +105,6 @@ namespace CoolLibrary.DAL.SeedData
                         {
                             Message="This a life changing book",
                             Reviewer="Susan Martin"
-                        },
-                        new Review()
-                        {
-                            Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
-                            Reviewer="Richard White"
                         },
                         new Review()
                         {
@@ -287,21 +238,6 @@ namespace CoolLibrary.DAL.SeedData
                         },
                         new Review()
                         {
-                            Message="This book provides a balanced look at the Matrix trilogy.",
-                            Reviewer="Susan Clark"
-                        },
-                        new Review()
-                        {
-                            Message="I have read almost all the Matrix books & seen all the movies.",
-                            Reviewer="Kenneth Walker"
-                        },
-                        new Review()
-                        {
-                            Message="It was a very easy and fast read.",
-                            Reviewer="Patricia Garcia"
-                        },
-                        new Review()
-                        {
                             Message="Very informative book and helped me gain financial literacy.",
                             Reviewer="Michael Taylor"
                         },
@@ -336,7 +272,6 @@ namespace CoolLibrary.DAL.SeedData
 
             await _dataContext.Books.AddRangeAsync(bookList);
             await _dataContext.SaveChangesAsync();
-
         }
 
         private static async Task AddReviews(DataContext _dataContext)

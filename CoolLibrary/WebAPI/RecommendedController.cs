@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CoolLibrary.BLL.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoolLibrary.WebAPI
 {
@@ -6,10 +7,17 @@ namespace CoolLibrary.WebAPI
     [Route("api/recommended")]
     public class RecommendedController : ControllerBase
     {
-        [HttpGet]
-        public async virtual Task<string> Get([FromQuery] string genre)
+        private readonly BookService _bookService;
+
+        public RecommendedController(BookService bookService)
         {
-            return "qwerty";
+            _bookService = bookService;
+        }
+
+        [HttpGet]
+        public virtual async Task<IActionResult> GetTopRate([FromQuery] string genre)
+        {
+            return Ok(await _bookService.GetTopRateAsync(genre));
         }
     }
 }
