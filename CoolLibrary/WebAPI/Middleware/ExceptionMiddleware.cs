@@ -49,6 +49,17 @@ namespace CoolLibrary.WebAPI.Middleware
                         break;
                 }
             }
+            finally
+            {
+                HandleRequest(httpContext);
+            }
+        }
+
+        private void HandleRequest(HttpContext httpContext)
+        {
+            _logger.LogInformation($"Method: {httpContext.Request.Method} " +
+                                   $"Path: {httpContext.Request.Path} " +
+                                   $"StatusCode: {httpContext.Response.StatusCode} ");
         }
 
         private async Task HandleNotFoundException(HttpContext httpContext, NotFoundException ex)
