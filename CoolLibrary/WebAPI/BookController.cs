@@ -1,4 +1,5 @@
-﻿using CoolLibrary.Common.DTO;
+﻿using CoolLibrary.BLL.Service;
+using CoolLibrary.Common.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoolLibrary.WebAPI
@@ -7,46 +8,54 @@ namespace CoolLibrary.WebAPI
     [Route("api/books")]
     public class BookController : ControllerBase
     {
-        [Route("books")]
-        [HttpGet]
-        public async virtual Task<string> GetAll([FromQuery] string order)
+        private readonly BookService _bookService;
+
+        public BookController(BookService bookService)
         {
-            return "qwerty";
+            _bookService = bookService;
+        }
+
+        [HttpGet]
+        public virtual async Task<IActionResult> GetAll([FromQuery] string order)
+        {
+            return Ok(await _bookService.GetAllAsync(order));
         }
 
         [Route("{id}")]
         [HttpGet]
-        public async virtual Task<string> GetById(int id)
+        public virtual async Task<IActionResult> GetById(int id)
         {
-            return "qwerty";
+            return Ok(await _bookService.GetByIdAsync(id));
         }
 
         [Route("{id}")]
         [HttpDelete]
-        public async virtual Task<string> DeleteById([FromQuery] string secret, int id)
+        public virtual async Task<IActionResult> DeleteById([FromQuery] string secret, int id)
         {
-            return "qwerty";
+            await _bookService.DeleteByIdAsync(id);
+
+            return NoContent();
         }
 
         [Route("save")]
         [HttpPost]
-        public async virtual Task<string> CreateOrUpdate([FromBody] BookDto book)
+        public virtual async Task<IActionResult> CreateOrUpdate([FromBody] NewBookDto bookDto)
         {
-            return "qwerty";
+            return Ok(await _bookService.CreateOrUpdateAsync(bookDto));
         }
 
         [Route("{id}/review")]
         [HttpPut]
-        public async virtual Task<string> AddReview([FromBody] ReviewDto review, int id)
+        public virtual async Task<IActionResult> AddReview([FromBody] ReviewDto review, int id)
         {
-            return "qwerty";
+            return Ok(await _bookService.AddReviewAsync(review, id));
         }
 
         [Route("{id}/rate")]
         [HttpPut]
-        public async virtual Task<string> AddRating([FromBody] RatingDto rating, int id)
+        public virtual async Task<IActionResult> AddRating([FromBody] RatingDto rating, int id)
         {
-            return "qwerty";
+            return Ok(await _bookService.AddRateAsync(rating, id));
         }
     }
 }
