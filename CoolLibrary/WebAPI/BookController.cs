@@ -32,7 +32,7 @@ namespace CoolLibrary.WebAPI
         [HttpDelete]
         public virtual async Task<IActionResult> DeleteById([FromQuery] string secret, int id)
         {
-            await _bookService.DeleteByIdAsync(id);
+            await _bookService.DeleteByIdAsync(id, secret);
 
             return NoContent();
         }

@@ -11,8 +11,10 @@ namespace CoolLibrary.BLL.Service
 {
     public class BookService : AbstractService
     {
-        public BookService(DataContext dataContext, IMapper mapper) : base(dataContext, mapper)
+        private readonly AuthorizationService _authorizationService;
+        public BookService(DataContext dataContext, IMapper mapper, AuthorizationService authorizationService) : base(dataContext, mapper)
         {
+            _authorizationService = authorizationService;
         }
 
         public async Task<int> CreateOrUpdateAsync(NewBookDto bookDto)
@@ -75,8 +77,11 @@ namespace CoolLibrary.BLL.Service
             return bookDto;
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id, string secretKey)
         {
+            if (!_authorizationService.isUserAuthorized(secretKey))
+                throw new UnauthorizedException();
+
             var book = await _dataContext.Books
                 .Where(book => book.Id == id)
                 .FirstOrDefaultAsync();

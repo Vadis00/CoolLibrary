@@ -10,14 +10,14 @@ namespace CoolLibrary.WebAPI.AppConfigurationExtension
         {
             services.ConfigureMapper();
 
+            services.AddSingleton<AuthorizationService>();
             services.AddScoped<BookService>();
         }
+
         public static IServiceCollection ConfigureMapper(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(BookProfile).Assembly, typeof(ReviewProfile).Assembly);
             return services;
         }
-
-
     }
 }
