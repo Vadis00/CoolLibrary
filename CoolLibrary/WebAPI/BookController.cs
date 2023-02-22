@@ -48,7 +48,7 @@ namespace CoolLibrary.WebAPI
 
         [Route("{id}/review")]
         [HttpPut]
-        public virtual async Task<IActionResult> AddReview([FromBody] ReviewDto review, int id)
+        public virtual async Task<IActionResult> AddReview([FromBody] NewReviewDto review, int id)
         {
             return Ok(await _bookService.AddReviewAsync(review, id));
         }

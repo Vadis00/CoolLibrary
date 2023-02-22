@@ -1,4 +1,9 @@
-﻿using CoolLibrary.Common.Entities.Abstract;
+﻿using CoolLibrary.Common.DTO;
+using CoolLibrary.Common.Entities.Abstract;
+using FluentValidation;
+using System.Net.Mail;
+using System.Net;
+using CoolLibrary.BLL.Exceptions;
 
 namespace CoolLibrary.Common.Entities
 {

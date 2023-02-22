@@ -108,7 +108,7 @@ namespace CoolLibrary.BLL.Service
             return rating.Id;
         }
 
-        public async Task<int> AddReviewAsync(ReviewDto reviewDto, int id)
+        public async Task<int> AddReviewAsync(NewReviewDto reviewDto, int id)
         {
             var book = await _dataContext.Books
                 .Where(book => book.Id == id)

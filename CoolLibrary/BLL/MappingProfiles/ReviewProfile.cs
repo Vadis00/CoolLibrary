@@ -9,6 +9,7 @@ namespace CoolLibrary.BLL.MappingProfiles
         public ReviewProfile()
         {
             CreateMap<Review, ReviewDto>().ReverseMap();
+            CreateMap<Review, NewReviewDto>().ReverseMap();
         }
     }
 }

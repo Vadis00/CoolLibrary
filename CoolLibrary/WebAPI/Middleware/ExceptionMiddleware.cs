@@ -1,4 +1,5 @@
-﻿using CoolLibrary.BLL;
+﻿using AutoMapper;
+using CoolLibrary.BLL;
 using CoolLibrary.BLL.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 
 namespace CoolLibrary.WebAPI.Middleware
@@ -42,6 +44,10 @@ namespace CoolLibrary.WebAPI.Middleware
 
                     case UnauthorizedException ex:
                         await HandleUnauthorizedException(httpContext, ex);
+                        break;
+
+                    case AutoMapperMappingException ex:
+                        await HandleAutoMapperMappingException(httpContext, ex);
                         break;
 
                     default:
@@ -92,6 +98,14 @@ namespace CoolLibrary.WebAPI.Middleware
             if (ex.InnerException != null)
                 _logger.LogError(ex.InnerException.Message);
             await CreateExceptionAsync(context);
+        }
+
+        private async Task HandleAutoMapperMappingException(HttpContext context, AutoMapperMappingException ex)
+        {
+            _logger.LogError("{ex.Message}", ex.Message);
+            if (ex.InnerException != null)
+                _logger.LogError(ex.InnerException.Message);
+            await CreateExceptionAsync(context, HttpStatusCode.Conflict, ex.Message);
         }
 
         private async Task CreateExceptionAsync(HttpContext context,
