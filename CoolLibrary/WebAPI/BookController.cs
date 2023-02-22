@@ -1,5 +1,6 @@
 ﻿using CoolLibrary.BLL.Service;
 using CoolLibrary.Common.DTO;
+using CoolLibrary.WebAPI.Middleware;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoolLibrary.WebAPI
@@ -28,6 +29,7 @@ namespace CoolLibrary.WebAPI
             return Ok(await _bookService.GetByIdAsync(id));
         }
 
+        [ApiKey]
         [Route("{id}")]
         [HttpDelete]
         public virtual async Task<IActionResult> DeleteById([FromQuery] string secret, int id)
