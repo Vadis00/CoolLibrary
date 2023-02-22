@@ -36,7 +36,7 @@ namespace CoolLibrary.DAL.SeedData
                         },
                         new Rating()
                         {
-                            Score =7
+                            Score =2
                         }
                     },
                 },
@@ -134,11 +134,11 @@ namespace CoolLibrary.DAL.SeedData
                     {
                         new Rating()
                         {
-                            Score =6
+                            Score =2
                         },
                         new Rating()
                         {
-                            Score =10
+                            Score =5
                         },
                         new Rating()
                         {
@@ -146,7 +146,7 @@ namespace CoolLibrary.DAL.SeedData
                         },
                         new Rating()
                         {
-                            Score =8
+                            Score =4
                         }
                     },
                     Reviews =
@@ -265,6 +265,175 @@ namespace CoolLibrary.DAL.SeedData
                         {
                             Message="I was so sad to get my book and no dust jacket and the less than what was described. The poor qualit",
                             Reviewer="Mary Jones"
+                        },
+                    }
+                },
+                new Book()
+                {
+                    Title = "The Writing Retreat",
+                    Cover = "Cover",
+                    Content = "Darkly satirical and action-packed....An absolutely splendid debut! --Wendy Walker",
+                    Author = "Wendy Walker",
+                    Genre = "Philosophy",
+                    Ratings =
+                    {
+                        new Rating()
+                        {
+                            Score =3
+                        },
+                        new Rating()
+                        {
+                            Score =1
+                        },
+                        new Rating()
+                        {
+                            Score =1
+                        },
+                        new Rating()
+                        {
+                            Score =3
+                        }
+                    },
+                    Reviews =
+                    {
+                        new Review()
+                        {
+                            Message="Overall, my reaction to this book is mixed",
+                            Reviewer="Robert Brown"
+                        },
+                        new Review()
+                        {
+                            Message="Very informative book and helped me gain financial literacy.",
+                            Reviewer="Michael Taylor"
+                        },
+                        new Review()
+                        {
+                            Message="This a life changing book",
+                            Reviewer="Susan Martin"
+                        },
+                        new Review()
+                        {
+                            Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
+                            Reviewer="Richard White"
+                        },
+                        new Review()
+                        {
+                            Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
+                            Reviewer="Mark Miller"
+                        },
+                        new Review()
+                        {
+                            Message="I truly love this books one of my favorites of all time.",
+                            Reviewer="Robert Brown"
+                        },
+                    }
+                },
+                new Book()
+                {
+                    Title = "Yonder",
+                    Cover = "Cover",
+                    Content = "The Water Dancer meets The Prophets in this spare, gripping, and beautifully rendered novel exploring love and friendship among a group of enslaved Black strivers in the mid-19th century",
+                    Author = "Wendy Walker",
+                    Genre = "Historical",
+                    Ratings =
+                    {
+                        new Rating()
+                        {
+                            Score =4
+                        },
+                        new Rating()
+                        {
+                            Score =1
+                        },
+                        new Rating()
+                        {
+                            Score =1
+                        },
+                        new Rating()
+                        {
+                            Score =3
+                        }
+                    },
+                    Reviews =
+                    {
+                        new Review()
+                        {
+                            Message="This a life changing book",
+                            Reviewer="Susan Martin"
+                        },
+                        new Review()
+                        {
+                            Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
+                            Reviewer="Richard White"
+                        },
+                        new Review()
+                        {
+                            Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
+                            Reviewer="Mark Miller"
+                        },
+                        new Review()
+                        {
+                            Message="I truly love this books one of my favorites of all time.",
+                            Reviewer="Robert Brown"
+                        },
+                        new Review()
+                        {
+                            Message="I was so sad to get my book and no dust jacket and the less than what was described. The poor qualit",
+                            Reviewer="Mary Jones"
+                        },
+                    }
+                },
+                new Book()
+                {
+                    Title = "The Wolf Haunting Europe",
+                    Cover = "Cover",
+                    Content = "The Water Dancer meets The Prophets in this spare, gripping, and beautifully rendered novel exploring love and friendship among a group of enslaved Black strivers in the mid-19th century",
+                    Author = "Wendy Walker",
+                    Genre = "Historical",
+                    Ratings =
+                    {
+                        new Rating()
+                        {
+                            Score =2
+                        },
+                        new Rating()
+                        {
+                            Score =1
+                        },
+                    },
+                    Reviews =
+                    {
+                        new Review()
+                        {
+                            Message="This a life changing book",
+                            Reviewer="Susan Martin"
+                        },
+                    }
+                },
+                new Book()
+                {
+                    Title = "Timelines from Black History: Leaders, Legends, Legacies",
+                    Cover = "Cover",
+                    Content = "The Water Dancer meets The Prophets in this spare, gripping, and beautifully rendered novel exploring love and friendship among a group of enslaved Black strivers in the mid-19th century",
+                    Author = "Wendy Walker",
+                    Genre = "Historical",
+                    Ratings =
+                    {
+                        new Rating()
+                        {
+                            Score =3
+                        },
+                        new Rating()
+                        {
+                            Score =5
+                        },
+                    },
+                    Reviews =
+                    {
+                        new Review()
+                        {
+                            Message="This a life changing book",
+                            Reviewer="Susan Martin"
                         },
                     }
                 },
