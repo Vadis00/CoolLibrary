@@ -10,7 +10,6 @@ namespace CoolLibrary.WebAPI.AppConfigurationExtension
         {
             services.ConfigureMapper();
 
-            services.AddSingleton<AuthorizationService>();
             services.AddScoped<BookService>();
         }
 
