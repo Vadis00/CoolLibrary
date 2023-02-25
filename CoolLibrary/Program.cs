@@ -21,6 +21,10 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors(
+    options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()
+);
+
 app.UseMiddleware<ExceptionMiddleware>(app.Logger);
 
 var scope = app.Services.CreateAsyncScope();

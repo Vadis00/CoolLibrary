@@ -59,5 +59,12 @@ namespace CoolLibrary.WebAPI
         {
             return Ok(await _bookService.AddRateAsync(rating, id));
         }
+
+        [Route("genre")]
+        [HttpGet]
+        public virtual async Task<IActionResult> GetAllGenre()
+        {
+            return Ok(await _bookService.GetAllGenre());
+        }
     }
 }
