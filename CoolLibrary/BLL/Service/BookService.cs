@@ -84,7 +84,7 @@ namespace CoolLibrary.BLL.Service
             if (book is null)
                 throw new NotFoundException("book", id);
 
-            _dataContext.Books.Remove(book);
+            _dataContext.Books.RemoveRange(book);
 
             await _dataContext.SaveChangesAsync();
         }

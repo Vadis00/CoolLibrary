@@ -19,7 +19,6 @@ namespace CoolLibrary.Common.DTO
         {
             RuleFor(x => x.Title).Length(1, 200);
             RuleFor(x => x.Author).Length(1, 100);
-            RuleFor(x => x.Cover).Length(1, 100);
             RuleFor(x => x.Genre).Length(1, 100);
         }
     }
