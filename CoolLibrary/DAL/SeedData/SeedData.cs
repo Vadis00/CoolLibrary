@@ -115,7 +115,7 @@ namespace CoolLibrary.DAL.SeedData
 
             foreach (var book in books)
             {
-                var count = rand.Next(2000, 5500);
+                var count = rand.Next(7000, 25500);
                 book.Content = RandomTextGenerator(count);
             }
             return books;
@@ -123,7 +123,7 @@ namespace CoolLibrary.DAL.SeedData
 
         public static string RandomTextGenerator(int length)
         {
-            var CharArray = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', ' ', ' ', '\n', '\n', '\n' };
+            var CharArray = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', ' ', ' ', '\n' };
             string text = "";
             Random random = new Random();
 
