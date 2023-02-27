@@ -16,6 +16,8 @@ namespace CoolLibrary.WebAPI.AppConfigurationExtension
             services.ConfigureMapper();
             services.AddScoped<BookService>();
 
+            services.AddCors();
+
             services.AddFluentValidationAutoValidation();
 
             services.AddScoped<IValidator<RatingDto>, RatingDtoValidator>();

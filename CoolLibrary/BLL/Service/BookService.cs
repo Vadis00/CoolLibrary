@@ -84,7 +84,7 @@ namespace CoolLibrary.BLL.Service
             if (book is null)
                 throw new NotFoundException("book", id);
 
-            _dataContext.Books.Remove(book);
+            _dataContext.Books.RemoveRange(book);
 
             await _dataContext.SaveChangesAsync();
         }
@@ -130,7 +130,7 @@ namespace CoolLibrary.BLL.Service
         public async Task<ICollection<BookPreviewDto>> GetTopRateAsync(string genre)
         {
             var bookEntity = await _dataContext.Books
-                .Where(book => book.Genre == genre)
+                .Where(book => book.Genre.ToLower() == genre.ToLower())
                 .Include(book => book.Ratings)
                 .Include(book => book.Reviews)
                 .OrderByDescending(book => book.Ratings.Select(r => r.Score).DefaultIfEmpty().Average())
@@ -143,6 +143,18 @@ namespace CoolLibrary.BLL.Service
             var booksDto = _mapper.Map<ICollection<BookPreviewDto>>(bookEntity);
 
             return booksDto;
+        }
+
+        public async Task<ICollection<string>> GetAllGenre()
+        {
+            var genre = await _dataContext.Books
+                                 .Select(p => p.Genre)
+                                 .Distinct().ToListAsync();
+
+            if (genre.Count() == 0)
+                throw new NotFoundException("genre");
+
+            return genre;
         }
     }
 }

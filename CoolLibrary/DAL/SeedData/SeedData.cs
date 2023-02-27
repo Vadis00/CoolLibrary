@@ -1,4 +1,10 @@
 ﻿using CoolLibrary.Common.Entities;
+using Microsoft.AspNetCore.Hosting.Server;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace CoolLibrary.DAL.SeedData
 {
@@ -6,523 +12,147 @@ namespace CoolLibrary.DAL.SeedData
     {
         public static async Task Initialization(DataContext dataContext)
         {
-            await AddBooks(dataContext);
+            await chatGTP_SeedDataGenerator(dataContext);
         }
 
-        private static async Task AddBooks(DataContext _dataContext)
+        private static async Task chatGTP_SeedDataGenerator(DataContext _dataContext)
         {
-            var bookList = new List<Book>()
+            var coverList = await ConvertImgToBase64();
+            Random rand = new Random();
+
+            List<Book> bookList = new()
             {
-                new Book()
-                {
-                    Title = "Code: The Hidden Language of Computer Hardware and Software",
-                    Cover = "Cover",
-                    Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    Author = "Charles Petzold",
-                    Genre = "Information Technology",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =5
-                        },
-                        new Rating()
-                        {
-                            Score =2
-                        },
-                        new Rating()
-                        {
-                            Score =1
-                        },
-                        new Rating()
-                        {
-                            Score =2
-                        }
-                    },
-                },
-                new Book()
-                {
-                    Title = "Code: The Hidden Language of Computer Hardware and Software",
-                    Cover = "Cover",
-                    Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    Author = "Charles Petzold",
-                    Genre = "Information Technology",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =5
-                        },
-                        new Rating()
-                        {
-                            Score =5
-                        },
-                        new Rating()
-                        {
-                            Score =5
-                        },
-                        new Rating()
-                        {
-                            Score =5
-                        }
-                    },
-                },
-                new Book()
-                {
-                    Title = "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
-                    Cover = "Cover",
-                    Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    Author = "Ashlee Vance",
-                    Genre = "Information Technology",
-                    Reviews =
-                    {
-                        new Review()
-                        {
-                            Message="Overall, my reaction to this book is mixed",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="This book provides a balanced look at the Matrix trilogy.",
-                            Reviewer="Susan Clark"
-                        },
-                        new Review()
-                        {
-                            Message="I have read almost all the Matrix books & seen all the movies.",
-                            Reviewer="Information Technology"
-                        },
-                        new Review()
-                        {
-                            Message="It was a very easy and fast read.",
-                            Reviewer="Patricia Garcia"
-                        },
-                        new Review()
-                        {
-                            Message="Very informative book and helped me gain financial literacy.",
-                            Reviewer="Michael Taylor"
-                        },
-                        new Review()
-                        {
-                            Message="This a life changing book",
-                            Reviewer="Susan Martin"
-                        },
-                        new Review()
-                        {
-                            Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
-                            Reviewer="Mark Miller"
-                        },
-                        new Review()
-                        {
-                            Message="I truly love this books one of my favorites of all time.",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="I was so sad to get my book and no dust jacket and the less than what was described. The poor qualit",
-                            Reviewer="Mary Jones"
-                        },
-                    }
-                },
-                new Book()
-                {
-                    Title = "Superintelligence: Paths, Dangers, Strategies",
-                    Cover = "Cover",
-                    Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    Author = "Nick Bostrom",
-                    Genre = "Philosophy",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =2
-                        },
-                        new Rating()
-                        {
-                            Score =5
-                        },
-                        new Rating()
-                        {
-                            Score =4
-                        },
-                        new Rating()
-                        {
-                            Score =4
-                        }
-                    },
-                    Reviews =
-                    {
-                        new Review()
-                        {
-                            Message="Overall, my reaction to this book is mixed",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="This book provides a balanced look at the Matrix trilogy.",
-                            Reviewer="Susan Clark"
-                        },
-                        new Review()
-                        {
-                            Message="I have read almost all the Matrix books & seen all the movies.",
-                            Reviewer="Kenneth Walker"
-                        },
-                        new Review()
-                        {
-                            Message="It was a very easy and fast read.",
-                            Reviewer="Patricia Garcia"
-                        },
-                        new Review()
-                        {
-                            Message="Very informative book and helped me gain financial literacy.",
-                            Reviewer="Michael Taylor"
-                        },
-                        new Review()
-                        {
-                            Message="This a life changing book",
-                            Reviewer="Susan Martin"
-                        },
-                        new Review()
-                        {
-                            Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
-                            Reviewer="Richard White"
-                        },
-                        new Review()
-                        {
-                            Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
-                            Reviewer="Mark Miller"
-                        },
-                        new Review()
-                        {
-                            Message="I truly love this books one of my favorites of all time.",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="I was so sad to get my book and no dust jacket and the less than what was described. The poor qualit",
-                            Reviewer="Mary Jones"
-                        },
-                    }
-                },
-                new Book()
-                {
-                    Title = "More Matrix and Philosophy: Revolutions and Reloaded Decoded",
-                    Cover = "Cover",
-                    Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    Author = "Nick Bostrom",
-                    Genre = "Philosophy",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =6
-                        },
-                        new Rating()
-                        {
-                            Score =1
-                        },
-                        new Rating()
-                        {
-                            Score =1
-                        },
-                        new Rating()
-                        {
-                            Score =3
-                        }
-                    },
-                    Reviews =
-                    {
-                        new Review()
-                        {
-                            Message="Overall, my reaction to this book is mixed",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="Very informative book and helped me gain financial literacy.",
-                            Reviewer="Michael Taylor"
-                        },
-                        new Review()
-                        {
-                            Message="This a life changing book",
-                            Reviewer="Susan Martin"
-                        },
-                        new Review()
-                        {
-                            Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
-                            Reviewer="Richard White"
-                        },
-                        new Review()
-                        {
-                            Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
-                            Reviewer="Mark Miller"
-                        },
-                        new Review()
-                        {
-                            Message="I truly love this books one of my favorites of all time.",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="I was so sad to get my book and no dust jacket and the less than what was described. The poor qualit",
-                            Reviewer="Mary Jones"
-                        },
-                    }
-                },
-                new Book()
-                {
-                    Title = "The Writing Retreat",
-                    Cover = "Cover",
-                    Content = "Darkly satirical and action-packed....An absolutely splendid debut! --Wendy Walker",
-                    Author = "Wendy Walker",
-                    Genre = "Philosophy",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =3
-                        },
-                        new Rating()
-                        {
-                            Score =1
-                        },
-                        new Rating()
-                        {
-                            Score =1
-                        },
-                        new Rating()
-                        {
-                            Score =3
-                        }
-                    },
-                    Reviews =
-                    {
-                        new Review()
-                        {
-                            Message="Overall, my reaction to this book is mixed",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="Very informative book and helped me gain financial literacy.",
-                            Reviewer="Michael Taylor"
-                        },
-                        new Review()
-                        {
-                            Message="This a life changing book",
-                            Reviewer="Susan Martin"
-                        },
-                        new Review()
-                        {
-                            Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
-                            Reviewer="Richard White"
-                        },
-                        new Review()
-                        {
-                            Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
-                            Reviewer="Mark Miller"
-                        },
-                        new Review()
-                        {
-                            Message="I truly love this books one of my favorites of all time.",
-                            Reviewer="Robert Brown"
-                        },
-                    }
-                },
-                new Book()
-                {
-                    Title = "Yonder",
-                    Cover = "Cover",
-                    Content = "The Water Dancer meets The Prophets in this spare, gripping, and beautifully rendered novel exploring love and friendship among a group of enslaved Black strivers in the mid-19th century",
-                    Author = "Wendy Walker",
-                    Genre = "Historical",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =4
-                        },
-                        new Rating()
-                        {
-                            Score =1
-                        },
-                        new Rating()
-                        {
-                            Score =1
-                        },
-                        new Rating()
-                        {
-                            Score =3
-                        }
-                    },
-                    Reviews =
-                    {
-                        new Review()
-                        {
-                            Message="This a life changing book",
-                            Reviewer="Susan Martin"
-                        },
-                        new Review()
-                        {
-                            Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
-                            Reviewer="Richard White"
-                        },
-                        new Review()
-                        {
-                            Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
-                            Reviewer="Mark Miller"
-                        },
-                        new Review()
-                        {
-                            Message="I truly love this books one of my favorites of all time.",
-                            Reviewer="Robert Brown"
-                        },
-                        new Review()
-                        {
-                            Message="I was so sad to get my book and no dust jacket and the less than what was described. The poor qualit",
-                            Reviewer="Mary Jones"
-                        },
-                    }
-                },
-                new Book()
-                {
-                    Title = "The Wolf Haunting Europe",
-                    Cover = "Cover",
-                    Content = "The Water Dancer meets The Prophets in this spare, gripping, and beautifully rendered novel exploring love and friendship among a group of enslaved Black strivers in the mid-19th century",
-                    Author = "Wendy Walker",
-                    Genre = "Historical",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =2
-                        },
-                        new Rating()
-                        {
-                            Score =1
-                        },
-                    },
-                    Reviews =
-                    {
-                        new Review()
-                        {
-                            Message="This a life changing book",
-                            Reviewer="Susan Martin"
-                        },
-                    }
-                },
-                new Book()
-                {
-                    Title = "Timelines from Black History: Leaders, Legends, Legacies",
-                    Cover = "Cover",
-                    Content = "The Water Dancer meets The Prophets in this spare, gripping, and beautifully rendered novel exploring love and friendship among a group of enslaved Black strivers in the mid-19th century",
-                    Author = "Wendy Walker",
-                    Genre = "Historical",
-                    Ratings =
-                    {
-                        new Rating()
-                        {
-                            Score =3
-                        },
-                        new Rating()
-                        {
-                            Score =5
-                        },
-                    },
-                    Reviews =
-                    {
-                        new Review()
-                        {
-                            Message="This a life changing book",
-                            Reviewer="Susan Martin"
-                        },
-                    }
-                },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Great Gatsby", Content = "The Great Gatsby is a novel by American author F. Scott Fitzgerald. Set in the summer of 1922, it follows Nick Carraway as he recounts the story of mysterious millionaire Jay Gatsby, who is obsessed with Daisy Buchanan.", Author = "F. Scott Fitzgerald", Genre = "Novel" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Catcher in the Rye", Author = "J.D. Salinger", Genre = "Novel" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Lord of the Rings", Author = "J.R.R. Tolkien", Genre = "Fantasy" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Catcher in the Rye", Author = "J. D. Salinger", Genre = "Bildungsroman" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "To Kill a Mockingbird", Author = "Harper Lee", Genre = "Southern Gothic" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "1984", Author = "George Orwell", Genre = "Dystopian" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", Genre = "Realist" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Adventures of Huckleberry Finn", Author = "Mark Twain", Genre = "Fiction" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "Animal Farm", Author = "George Orwell", Genre = "Political satire" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "Pride and Prejudice", Author = "Jane Austen", Genre = "Romantic comedy" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Lord of the Rings", Author = "J. R. R. Tolkien", Genre = "Fantasy" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Grapes of Wrath", Author = "John Steinbeck", Genre = "Social novel" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Hunger Games", Author = "Suzanne Collins", Genre = "Dystopian" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "Alice's Adventures in Wonderland", Author = "Lewis Carroll", Genre = "Fantasy" },
+                new Book { Cover=coverList[rand.Next(0, coverList.Count)], Title = "The Harry Potter Series", Author = "J. K. Rowling", Genre = "Fantasy" },
             };
+            bookList = AddReviews(bookList);
+            bookList = AddRatings(bookList);
+            bookList = AddCover(bookList);
 
             await _dataContext.Books.AddRangeAsync(bookList);
             await _dataContext.SaveChangesAsync();
         }
 
-        private static async Task AddReviews(DataContext _dataContext)
+        private static List<Book> AddReviews(List<Book> books)
         {
-            var ratingList = new List<Review>()
+            List<string> names = new() { "John Smith", "Alex Johnson", "Sarah Anderson", "Michael Miller", "Emily Robinson", "Daniel Carter", "Anna Harris", "Tyler Lewis", "Joseph Moore", "Rebecca King", "Matthew Walker", "Jacob White", "Jessica Allen", "Matthew Parker", "Megan Hall", "Joshua Davis", "David Martin", "James Brown", "Emily Wilson", "Andrew Taylor" };
+
+            List<string> reviews = new List<string>
             {
-                new Review()
-                {
-                    BookId=1,
-                    Message="Overall, my reaction to this book is mixed",
-                    Reviewer="Robert Brown"
-                },
-                new Review()
-                {
-                    BookId=1,
-                    Message="This book provides a balanced look at the Matrix trilogy.",
-                    Reviewer="Susan Clark"
-                },
-                new Review()
-                {
-                    BookId=1,
-                    Message="I have read almost all the Matrix books & seen all the movies.",
-                    Reviewer="Kenneth Walker"
-                },
-                new Review()
-                {
-                    BookId=2,
-                    Message="It was a very easy and fast read.",
-                    Reviewer="Patricia Garcia"
-                },
-                new Review()
-                {
-                    BookId=2,
-                    Message="Very informative book and helped me gain financial literacy.",
-                    Reviewer="Michael Taylor"
-                },
-                new Review()
-                {
-                    BookId=3,
-                    Message="This a life changing book",
-                    Reviewer="Susan Martin"
-                },
-                new Review()
-                {
-                    BookId=3,
-                    Message="Great book for young people tryna become successful in today's economy. Tons of free game in this book",
-                    Reviewer="Richard White"
-                },
-                new Review()
-                {
-                    BookId=4,
-                    Message="It's a magical adventure you can't miss... You'll feel emotions as you go through this book and the next ones....",
-                    Reviewer="Mark Miller"
-                },
-                new Review()
-                {
-                    BookId=4,
-                    Message="I truly love this books one of my favorites of all time.",
-                    Reviewer="Robert Brown"
-                },
-                new Review()
-                {
-                    BookId=4,
-                    Message="I was so sad to get my book and no dust jacket and the less than what was described. The poor qualit",
-                    Reviewer="Mary Jones"
-                },
+                "This book was an amazing read! Highly recommend.",
+                "Definitely one of the best books I've ever read!",
+                "This book was really thought-provoking and I loved it.",
+                "I couldn't put this book down! It was so exciting!",
+                "The characters in this book were so realistic and I loved them.",
+                "The plot of this book was so unique and captivating.",
+                "I found this book to be incredibly inspiring.",
+                "The writing was so beautiful and poetic.",
+                "This book made me laugh, cry, and everything in between!",
+                "This book was so educational and I learned a lot!",
+                "The themes in this book were so interesting and complex.",
+                "The ending of this book was so unexpected and I was amazed!",
+                "I was so invested in this book, I couldn't put it down!",
+                "The setting of this book was so vivid and captivating.",
+                "The author had such a unique style of writing.",
+                "The storyline of this book was so complex and interesting.",
+                "I found this book to be so relatable and heartwarming.",
+                "I was so inspired by this book and its message.",
+                "This book was so eye-opening and I gained so much from it.",
+                "This book was such an incredible journey and I loved it."
             };
+            Random rand = new Random();
 
-            await _dataContext.Reviews.AddRangeAsync(ratingList);
+            foreach (var book in books)
+            {
+                var count = rand.Next(2, 10);
+                for (int i = 0; i < count; i++)
+                {
+                    book.Reviews.Add(new Review()
+                    {
+                        Reviewer = names[rand.Next(1, names.Count)],
+                        Message = reviews[rand.Next(1, reviews.Count)],
+                    });
+                }
+            }
 
-            await _dataContext.SaveChangesAsync();
+            return books;
         }
 
-        private static async Task AddRatings(DataContext _dataContext)
+        private static List<Book> AddRatings(List<Book> books)
         {
-            var ratingList = new List<Book>()
+            Random rand = new Random();
+
+            foreach (var book in books)
             {
-            };
+                var count = rand.Next(2, 10);
+                for (int i = 0; i < count; i++)
+                {
+                    book.Ratings.Add(new Rating()
+                    {
+                        Score = rand.Next(2, 5),
+                    });
+                }
+            }
+            return books;
+        }
 
-            await _dataContext.Books.AddRangeAsync(ratingList);
+        private static List<Book> AddCover(List<Book> books)
+        {
+            Random rand = new Random();
 
-            await _dataContext.SaveChangesAsync();
+            foreach (var book in books)
+            {
+                var count = rand.Next(7000, 25500);
+                book.Content = RandomTextGenerator(count);
+            }
+            return books;
+        }
+
+        public static string RandomTextGenerator(int length)
+        {
+            var CharArray = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', ' ', ' ', '\n' };
+            string text = "";
+            Random random = new Random();
+
+            for (int i = 0; i < length; i++)
+            {
+                text += CharArray[random.Next(CharArray.Length)];
+            }
+            return text;
+        }
+
+        private static async Task<List<string>?> ConvertImgToBase64()
+        {
+            List<string> base64Img = new();
+
+            string workingDirectory = System.AppContext.BaseDirectory;
+
+            if (workingDirectory == null)
+                return null;
+
+            string[] files = Directory.GetFiles($@"{workingDirectory}\\Imgs");
+
+            foreach (var file in files)
+            {
+                byte[] imageArray = await System.IO.File.ReadAllBytesAsync(file);
+
+                base64Img.Add("data:image/png;base64," + Convert.ToBase64String(imageArray));
+            }
+
+            return base64Img;
         }
     }
 }
